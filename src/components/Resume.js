@@ -340,5 +340,5 @@ const Resume = () => {
       </div>
     </section>
   );
-
+};
   export default Resume;
