@@ -6,17 +6,44 @@ const Resume = () => {
   const resumeRef = useRef(null);
 
   const downloadResume = () => {
-    const element = resumeRef.current;
-    if (!element) return;
+  const element = resumeRef.current;
+  if (!element) return;
+
+  // ① ชั่วคราวให้ element แสดงผลจริง
+  element.style.position = 'fixed';
+  element.style.left = '0';
+  element.style.top = '0';
+  element.style.opacity = '0';
+  element.style.zIndex = '-1';
+
+  setTimeout(() => {
     const options = {
       margin: 0,
       filename: `${resumeData.personal.firstName}_${resumeData.personal.lastName}_Resume.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,   // ② เพิ่มตรงนี้
+        logging: false,
+        windowWidth: 794,   // ③ A4 width in px
+      },
       jsPDF: { format: 'a4', orientation: 'portrait' },
     };
-    html2pdf().set(options).from(element).save();
-  };
+
+    html2pdf()
+      .set(options)
+      .from(element)
+      .save()
+      .then(() => {
+        // ④ คืนค่า hidden กลับ
+        element.style.position = 'absolute';
+        element.style.left = '-99999px';
+        element.style.opacity = '1';
+        element.style.zIndex = 'auto';
+      });
+  }, 300); // รอ 300ms ให้ render เสร็จ
+};
 
   const { personal, summary, skills, experience, projects, education } = resumeData;
 
