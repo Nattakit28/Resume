@@ -1,48 +1,14 @@
 import React, { useRef } from 'react';
-import html2pdf from 'html2pdf.js';
 import { resumeData } from '../constants/resumeData';
 
 const Resume = () => {
-  const resumeRef = useRef(null);
 
   const downloadResume = () => {
-    const element = resumeRef.current;
-    if (!element) return;
-
-    element.style.position = 'fixed';
-    element.style.left = '0';
-    element.style.top = '0';
-    element.style.opacity = '0';
-    element.style.zIndex = '-9999';
-
-    const options = {
-      margin: 0,
-      filename: `${resumeData.personal.firstName}_${resumeData.personal.lastName}_Resume.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        logging: false,
-        windowWidth: 794,
-      },
-      jsPDF: { format: 'a4', orientation: 'portrait' },
-    };
-
-    setTimeout(() => {
-      html2pdf()
-        .set(options)
-        .from(element)
-        .save()
-        .finally(() => {
-          element.style.position = 'absolute';
-          element.style.left = '-99999px';
-          element.style.top = '0';
-          element.style.opacity = '1';
-          element.style.zIndex = 'auto';
-        });
-    }, 300);
-  };
+  const link = document.createElement('a');
+  link.href = '/resume/Nattakit_Ploytrakul_Resume.pdf';
+  link.download = 'Nattakit_Ploytrakul_Resume.pdf';
+  link.click();
+};
   
   const { personal, summary, skills, experience, projects, education } = resumeData;
 
@@ -99,26 +65,6 @@ const Resume = () => {
       <p style={{ textAlign: 'center', color: '#2d3748', fontSize: '12px', margin: '0 0 8px 0' }}>
         Resume preview is hidden. Click the button to download directly.
       </p>
-
-      {/* Hidden resume template for PDF generation */}
-      <div
-        ref={resumeRef}
-        style={{
-          position: 'absolute',
-          left: '-99999px',
-          top: 0,
-          width: '210mm',
-          height: '297mm',
-          backgroundColor: '#fff',
-          display: 'flex',
-          flexDirection: 'row',
-          fontFamily: '"Georgia", serif',
-          fontSize: '11px',
-          lineHeight: '1.65',
-          color: '#2c3e50',
-          overflow: 'hidden',
-        }}
-      >
 
         {/* ════ LEFT SIDEBAR ════ */}
         <div style={{
