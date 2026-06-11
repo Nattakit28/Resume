@@ -281,9 +281,7 @@ const Resume = () => {
               </div>
             ))}
           </div>
-
         </div>
-      </div>
     </section>
   );
 };
