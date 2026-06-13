@@ -71,7 +71,7 @@ const Projects = () => {
       title: "Portfolio Website",
       description: "เว็บไซต์ Portfolio สำหรับสมัครงาน (เว็บนี้เอง!)",
       tech: ["React", "Tailwind CSS", "Responsive"],
-      image: "🎨",
+      image: "/image/Resume.png",
       github: "https://github.com",
       live: "https://yourportfolio.com",
       features: ["Responsive Design", "Smooth Scroll", "SEO Ready"],
