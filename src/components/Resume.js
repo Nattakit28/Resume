@@ -1,23 +1,15 @@
 import React, { useRef } from 'react';
-import html2pdf from 'html2pdf.js';
 import { resumeData } from '../constants/resumeData';
 
 const Resume = () => {
-  const resumeRef = useRef(null);
 
   const downloadResume = () => {
-    const element = resumeRef.current;
-    if (!element) return;
-    const options = {
-      margin: 0,
-      filename: `${resumeData.personal.firstName}_${resumeData.personal.lastName}_Resume.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { format: 'a4', orientation: 'portrait' },
-    };
-    html2pdf().set(options).from(element).save();
-  };
-
+  const link = document.createElement('a');
+  link.href = '/resume/Nattakit_Ploytrakul_Resume.pdf';
+  link.download = 'Nattakit_Ploytrakul_Resume.pdf';
+  link.click();
+};
+  
   const { personal, summary, skills, experience, projects, education } = resumeData;
 
   // ─── Shared style tokens ───
@@ -78,12 +70,9 @@ const Resume = () => {
       <div
         ref={resumeRef}
         style={{
-          position: 'fixed',
-          left: 0,
+          position: 'absolute',
+          left: '-99999px',
           top: 0,
-          zIndex: -1,
-          opacity: 0,
-          pointerEvents: 'none',
           width: '210mm',
           height: '297mm',
           backgroundColor: '#fff',
@@ -312,9 +301,7 @@ const Resume = () => {
               </div>
             ))}
           </div>
-
         </div>
-      </div>
     </section>
   );
 };
