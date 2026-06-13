@@ -76,6 +76,16 @@ const Projects = () => {
       live: "https://yourportfolio.com",
       features: ["Responsive Design", "Smooth Scroll", "SEO Ready"],
     },
+    {
+      id: 4,
+      title: "P",
+      description: "Task Management System Website เว็บไซต์จัดการรายงาน",
+      tech: ["็HTML", "CSS", "Js"],
+      image: "/image/Web.png",
+      gitlab: "https://gitlab.com/crystalza55/final_nattakit_28",
+      live: "https://final-nattakit-28-0d0365.gitlab.io/",
+      features: ["Create/Edit/Delete Task","Local Storage"],
+    },
   ];
 
   return (
