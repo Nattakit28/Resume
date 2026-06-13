@@ -78,7 +78,7 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: "P",
+      title: "Task Management System Website",
       description: "Task Management System Website เว็บไซต์จัดการรายงาน",
       tech: ["็HTML", "CSS", "Js"],
       image: "/image/Web.png",
