@@ -78,9 +78,12 @@ const Resume = () => {
       <div
         ref={resumeRef}
         style={{
-          position: 'absolute',
-          left: '-99999px',
+          position: 'fixed',
+          left: 0,
           top: 0,
+          zIndex: -1,
+          opacity: 0,
+          pointerEvents: 'none',
           width: '210mm',
           height: '297mm',
           backgroundColor: '#fff',
